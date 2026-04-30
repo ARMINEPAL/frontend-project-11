@@ -3,4 +3,4 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ARMINEPAL_frontend-project-11&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ARMINEPAL_frontend-project-11)
 
-http://localhost:5173/
+https://frontend-project-11-bfa9.vercel.app/
