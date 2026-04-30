@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RSS Reader</title>
+  </head>
+
+  <body class="bg-light d-flex flex-column min-vh-100">
+    <header class="bg-dark text-white py-5 ">
+        <div class="container w-50 mx-auto">
+            <h1 class="display-5">RSS агрегатор</h1>
+        <p>Начните читать RSS сегодня! Это легко, это красиво.</p>
+        <form id="rssForm" class="row g-2">
+            <div class="col-12 col-md-9">
+              <input
+                type="text"
+                id="rssUrl"
+                class="form-control form-control-lg"
+                placeholder="Ссылка RSS"
+              />
+            </div>
+    
+            <div class="col-12 col-md-3 d-grid class="p-0">
+                <button class="btn btn-light btn-sm">
+                  Добавить
+                </button>
+              </div>
+
+              <div class="form-text text-light">
+                <span class="opacity-50">Пример: https://lorem-rss.hexlet.app/feed</span>
+              </div>
+            </form>
+        </div>
+    </header>
+    <main class="container my-5 flex-grow-1">
+        <div id="feeds" class="row g-4">
+        </div>
+      </main>
+      <footer class="border-top py-3 bg-white mt-auto">
+        <div class="container text-center text-muted">
+          created by <a href="#">Hexlet</a>
+        </div>
+      </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
