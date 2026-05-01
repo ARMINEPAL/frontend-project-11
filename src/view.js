@@ -1,7 +1,9 @@
 import { subscribe, snapshot } from 'valtio/vanilla'
 import { initState } from './state.js'
 
-
+let input
+let container
+let textCheck
 
 const render = () => {
   const snap = snapshot(initState)

@@ -27,6 +27,9 @@ const validate = async (url, feeds) => {
 
 initView()
 
+const form = document.querySelector('#rssForm');
+const input = document.querySelector('#rssUrl');
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
   const url = input.value
