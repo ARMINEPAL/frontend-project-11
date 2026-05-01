@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-
-
 import * as yup from 'yup'
-import { proxy, subscribe, snapshot } from 'valtio/vanilla'
+import initView from './view.js'
+import { initState } from './state.js'
+
 
 const createSchema = (feeds) => {
   const urls = feeds.map((feed) => feed.url)
@@ -25,32 +25,7 @@ const validate = async (url, feeds) => {
   }
 }
 
-const initState = proxy({
-  form: {
-    valid: true,
-    error: null,
-  },
-  feeds: []
-})
-const form = document.querySelector('#rssForm')
-const input = document.querySelector('#rssUrl')
-const container = document.querySelector('.container')
-const textCheck = document.createElement('span')
-container.append(textCheck)
-
-const render = () => {
-  const snap = snapshot(initState)
-  if(snap.form.error) {
-    textCheck.textContent = snap.form.error
-    input.classList.add('is-invalid')
-    textCheck.classList.add('text-danger');
-  } else {
-    textCheck.textContent = ''
-    input.classList.remove('is-invalid')
-  }
-}
-
-subscribe(initState, render)
+initView()
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
@@ -66,5 +41,3 @@ form.addEventListener('submit', async (e) => {
     input.focus();
   }
 })
-
-render()
