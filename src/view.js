@@ -7,7 +7,7 @@ let textCheck
 
 const render = () => {
   const snap = snapshot(initState)
-  if(!snap.form.valid) {
+  if(snap.form.valid === false) {
     textCheck.textContent = snap.form.error
     input.classList.add('is-invalid')
     textCheck.classList.add('text-danger')
