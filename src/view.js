@@ -16,21 +16,22 @@ const render = () => {
   else if (snap.form.valid && snap.form.error === null) {
     textCheck.textContent = 'RSS загружен успешно';
 
-    input.classList.remove('is-invalid');
+    input.classList.remove('is-invalid')
 
-    textCheck.classList.remove('text-danger');
-    textCheck.classList.add('text-success');
+    textCheck.classList.remove('text-danger')
+    textCheck.classList.add('text-success')
   }
   else {
     textCheck.textContent = ''
     input.classList.remove('is-invalid')
+    textCheck.classList.remove('text-danger')
   }
 }
 
 export default () => {
-  input = document.querySelector('#rssUrl');
+  input = document.querySelector('#rssUrl')
   form = document.querySelector('#rssForm')
-  textCheck = document.createElement('span');
+  textCheck = document.createElement('span')
   form.append(textCheck)
   subscribe(initState, render)
   render()
