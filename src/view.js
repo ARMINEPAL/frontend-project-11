@@ -7,11 +7,21 @@ let textCheck
 
 const render = () => {
   const snap = snapshot(initState)
-  if(snap.form.error) {
+  if(!snap.form.valid) {
     textCheck.textContent = snap.form.error
     input.classList.add('is-invalid')
-    textCheck.classList.add('text-danger');
-  } else {
+    textCheck.classList.add('text-danger')
+    textCheck.classList.remove('text-success')
+  } 
+  else if (snap.form.valid && snap.form.error === null) {
+    textCheck.textContent = 'RSS загружен успешно';
+
+    input.classList.remove('is-invalid');
+
+    textCheck.classList.remove('text-danger');
+    textCheck.classList.add('text-success');
+  }
+  else {
     textCheck.textContent = ''
     input.classList.remove('is-invalid')
   }

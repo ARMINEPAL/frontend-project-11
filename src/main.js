@@ -34,6 +34,7 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault()
   const url = input.value
   const error = await validate(url, initState.feeds)
+  initState.form.valid = !error
   initState.form.error = error
 
   if (!error) {
