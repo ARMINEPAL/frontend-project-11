@@ -21,11 +21,6 @@ const render = () => {
     textCheck.classList.remove('text-danger')
     textCheck.classList.add('text-success')
   }
-  else {
-    textCheck.textContent = ''
-    input.classList.remove('is-invalid')
-    textCheck.classList.remove('text-danger')
-  }
 }
 
 export default () => {
