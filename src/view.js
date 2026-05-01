@@ -13,13 +13,22 @@ const render = () => {
     textCheck.classList.add('text-danger')
     textCheck.classList.remove('text-success')
   } 
-  else if (snap.form.valid === true && snap.form.error === null) {
+  else if (snap.form.valid === true) {
     textCheck.textContent = 'RSS загружен успешно';
 
     input.classList.remove('is-invalid')
 
     textCheck.classList.remove('text-danger')
     textCheck.classList.add('text-success')
+  }
+  else {
+   
+    textCheck.textContent = '';
+
+    input.classList.remove('is-invalid');
+
+    textCheck.classList.remove('text-danger');
+    textCheck.classList.remove('text-success');
   }
 }
 
