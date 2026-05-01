@@ -42,6 +42,7 @@ form.addEventListener('submit', async (e) => {
 
     input.value = '';
     initState.form.error = null;
+    initState.form.valid = null
     input.focus();
   }
 })
