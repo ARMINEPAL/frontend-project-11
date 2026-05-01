@@ -35,7 +35,7 @@ const initState = proxy({
 const form = document.querySelector('#rssForm')
 const input = document.querySelector('#rssUrl')
 const container = document.querySelector('.container')
-const textCheck = document.createElement('p')
+const textCheck = document.createElement('span')
 container.append(textCheck)
 
 const render = () => {
@@ -43,6 +43,7 @@ const render = () => {
   if(snap.form.error) {
     textCheck.textContent = snap.form.error
     input.classList.add('is-invalid')
+    textCheck.classList.add('text-danger');
   } else {
     textCheck.textContent = ''
     input.classList.remove('is-invalid')
