@@ -50,7 +50,7 @@ const render = () => {
   }
 }
 
-subscribe(initState.form, render)
+subscribe(initState, render)
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
