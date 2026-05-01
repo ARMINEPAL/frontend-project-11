@@ -2,7 +2,7 @@ import { subscribe, snapshot } from 'valtio/vanilla'
 import { initState } from './state.js'
 
 let input
-let container
+let form
 let textCheck
 
 const render = () => {
@@ -19,10 +19,9 @@ const render = () => {
 
 export default () => {
   input = document.querySelector('#rssUrl');
-  container = document.querySelector('.container');
-
+  form = document.querySelector('#rssForm')
   textCheck = document.createElement('span');
-  container.append(textCheck)
-    subscribe(initState, render)
-    render()
+  form.append(textCheck)
+  subscribe(initState, render)
+  render()
 }
