@@ -32,8 +32,8 @@ const initState = proxy({
   },
   feeds: []
 })
-const form = document.querySelector('#rssform')
-const input = document.querySelector('#rssurl')
+const form = document.querySelector('#rssForm')
+const input = document.querySelector('#rssUrl')
 const container = document.querySelector('.container')
 const textCheck = document.createElement('p')
 container.append(textCheck)
