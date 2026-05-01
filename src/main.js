@@ -49,7 +49,7 @@ const render = () => {
   }
 }
 
-subscribe(initState, render)
+subscribe(initState.form, render)
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
@@ -65,3 +65,5 @@ form.addEventListener('submit', async (e) => {
     input.focus();
   }
 })
+
+render()
