@@ -5,5 +5,9 @@ export const initState = proxy({
     valid: null,
     error: null,
   },
+  loadingProcess: {
+    status: 'idle',
+    error: null,
+  },
   feeds: [],
 });

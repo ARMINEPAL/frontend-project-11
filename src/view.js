@@ -5,16 +5,16 @@ let input
 let form
 let textCheck
 
-const render = () => {
+const render = (i18n) => {
   const snap = snapshot(initState)
   if(snap.form.valid === false) {
-    textCheck.textContent = snap.form.error
+    textCheck.textContent = i18n.t(snap.form.error)
     input.classList.add('is-invalid')
     textCheck.classList.add('text-danger')
     textCheck.classList.remove('text-success')
   } 
   else if (snap.form.valid === true) {
-    textCheck.textContent = 'RSS загружен успешно';
+    textCheck.textContent = i18n.t('success')
 
     input.classList.remove('is-invalid')
 
@@ -32,11 +32,11 @@ const render = () => {
   }
 }
 
-export default () => {
+export default (i18n) => {
   input = document.querySelector('#rssUrl')
   form = document.querySelector('#rssForm')
   textCheck = document.createElement('span')
   form.append(textCheck)
-  subscribe(initState, render)
-  render()
+  subscribe(initState, () => render(i18n))
+  render(i18n)
 }

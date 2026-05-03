@@ -1,16 +1,29 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as yup from 'yup'
+import { setLocale } from 'yup'
 import initView from './view.js'
 import { initState } from './state.js'
+import resources from './locales/index.js'
+import i18next from 'i18next'
 
+const defaultLanguage = 'ru'
 
+setLocale({
+  mixed: {
+    required: () => ({ key: 'errors.required'}),
+    notOneOf: () => ({ key: 'errors.shoudEqual'})
+  },
+  string: {
+    url: () => ({ key: 'errors.url'}),
+  },
+})
 const createSchema = (feeds) => {
   const urls = feeds.map((feed) => feed.url)
   return yup.object().shape({
     url: yup.string()
-    .required('Не должно быть пустым')
-    .url('Ссылка должна быть валидным URL')
-    .notOneOf(urls, 'RSS уже существует')
+    .required()
+    .url()
+    .notOneOf(urls)
   })
 } 
 
@@ -21,11 +34,19 @@ const validate = async (url, feeds) => {
     return null
   }
   catch (e) {
-    return e.message
+    return e.message.key
   }
 }
 
-initView()
+const i18n = i18next.createInstance()
+
+await i18n.init({
+  lng: defaultLanguage,
+  debug:false,
+  resources,
+})
+
+initView(i18n)
 
 const form = document.querySelector('#rssForm');
 const input = document.querySelector('#rssUrl');
