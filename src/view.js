@@ -47,8 +47,13 @@ const renderPosts = (posts) => {
 
 const render = (i18n) => {
   const snap = snapshot(initState)
-  renderFeeds(snap.feeds)
-  renderPosts(snap.posts)
+  if (snap.feeds.length > 0) {
+    renderFeeds(snap.feeds)
+  }
+  
+  if (snap.posts.length > 0) {
+    renderPosts(snap.posts)
+  }
 
   if(snap.form.valid === false) {
     textCheck.textContent = i18n.t(snap.form.error)
