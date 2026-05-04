@@ -86,7 +86,7 @@ export default (i18n) => {
   </section>
 
   <section class="col-6">
-    <h4>${i18n.t('feeds.title')}</42>
+    <h4>${i18n.t('feeds.title')}</h4>
     <div id="feeds"></div>
   </section>
 
