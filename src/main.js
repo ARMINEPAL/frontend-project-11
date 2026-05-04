@@ -5,9 +5,7 @@ import initView from './view.js'
 import { initState } from './state.js'
 import resources from './locales/index.js'
 import i18next from 'i18next'
-import load from './api.js'
-import parseRSS from './parser.js'
-import { uniqueId } from 'lodash'
+import loadFeed from './feedLoader.js'
 
 const defaultLanguage = 'ru'
 
@@ -66,23 +64,13 @@ form.addEventListener('submit', async (e) => {
   }
 
   try {
-    const data = await load(url)
-    const {feed, posts} = parseRSS(data)
-    feed.id = uniqueId()
-    feed.url = url
-    const relatedPosts = posts.map(post => {
-      return {
-    ...post,
-    id: uniqueId(),
-    feedId: feed.id
-  }
-})
-initState.feeds.push(feed)
-initState.posts.push(...relatedPosts)
-initState.form.valid = true
-initState.form.error = null
-input.value = '';
-input.focus();
+    const { feed, posts } = await loadFeed(url)
+    initState.feeds.push(feed)
+    initState.posts.push(...posts)
+    initState.form.valid = true
+    initState.form.error = null
+    input.value = '';
+    input.focus();
   }
   catch (e) {
     initState.form.valid = false
