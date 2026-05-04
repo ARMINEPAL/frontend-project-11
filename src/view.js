@@ -21,7 +21,8 @@ const renderFeeds = (feeds = []) => {
     feedsContainer.append(div)})
 }
 
-const renderPosts = (posts = []) => {
+const renderPosts = (posts) => {
+  if (!posts) return
   const container = document.querySelector('#posts')
 
   container.innerHTML = ''
