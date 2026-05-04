@@ -5,6 +5,9 @@ import initView from './view.js'
 import { initState } from './state.js'
 import resources from './locales/index.js'
 import i18next from 'i18next'
+import load from './api.js'
+import parseRSS from './parser.js'
+import { uniqueId } from 'lodash'
 
 const defaultLanguage = 'ru'
 
@@ -58,11 +61,30 @@ form.addEventListener('submit', async (e) => {
   initState.form.valid = !error
   initState.form.error = error
 
-  if (!error) {
-    initState.feeds.push({ url });
+  if (error) {
+    return
+  }
 
-    input.value = '';
-    initState.form.error = null;
+  try {
+    const data = await load(url)
+    const {feed, posts} = parseRSS(data)
+    feed.id = uniqueId()
+    feed.url = url
+    const relatedPosts = posts.map(post => {
+      return {
+    ...post,
+    id: uniqueId(),
+    feedId: feed.id
+  }
+})
+initState.feeds.push(feed)
+initState.posts.push(...relatedPosts)
+input.value = '';
     input.focus();
   }
+  catch (e) {
+    initState.form.valid = false
+    initState.form.error = 'errors.network'
+  }
+    
 })

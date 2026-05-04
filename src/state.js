@@ -10,4 +10,8 @@ export const initState = proxy({
     error: null,
   },
   feeds: [],
+  ui: {
+    seenPosts: [],
+    //new Set()
+  }
 });

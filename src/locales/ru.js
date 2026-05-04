@@ -7,7 +7,8 @@ export default {
         errors: {
             required: 'Не должно быть пустым',
             url: 'Ссылка должна быть валидным URL',
-            notOne: 'RSS уже существует'
-        }
+            notOneOf: 'RSS уже существует',
+            network: 'Ошибка сети'
+        },
     }
 }
