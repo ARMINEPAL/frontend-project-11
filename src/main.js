@@ -14,6 +14,7 @@ const defaultLanguage = 'ru'
 setLocale({
   mixed: {
     required: () => ({ key: 'errors.required'}),
+    notOneOf: () => ({ key: 'errors.shoudEqual'})
   },
   string: {
     url: () => ({ key: 'errors.url'}),
