@@ -76,7 +76,7 @@ const render = (i18n) => {
 }
 
 export default (i18n) => {
-  const container = document.querySelector('.container')
+  const container = document.querySelector('.mainCntainer')
 
   container.innerHTML = `
   <section>
