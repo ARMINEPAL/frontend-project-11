@@ -1,8 +1,7 @@
 import axios from "axios"
 
 const getProxyUrl = (url) => {
-    const proxy = 'https://allorigins.hexlet.app/get'
-    return `${proxy}?disableCache=true&url=${encodeURIComponent(url)}`
+    return `https://allorigins.hexlet.app/get?url=${encodeURIComponent(url)}&cache=false`
   }
   
 const load = async (url) => {
