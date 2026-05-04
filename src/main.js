@@ -87,7 +87,7 @@ input.focus();
   catch (e) {
     initState.form.valid = false
 
-    if (e.message === 'parse') {
+    if (e.type === 'parse') {
     initState.form.error = 'errors.parse'
   } else {
     initState.form.error = 'errors.network'
