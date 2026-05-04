@@ -37,7 +37,7 @@ const validate = async (url, feeds) => {
     return null
   }
   catch (e) {
-    return e.message.key
+    return e.message?.key || e.message
   }
 }
 
