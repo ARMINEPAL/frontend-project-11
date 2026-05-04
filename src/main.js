@@ -6,6 +6,7 @@ import { initState } from './state.js'
 import resources from './locales/index.js'
 import i18next from 'i18next'
 import loadFeed from './feedLoader.js'
+import updateFeeds from './updateFeeds.js'
 
 const defaultLanguage = 'ru'
 
@@ -48,7 +49,7 @@ await i18n.init({
 })
 
 initView(i18n)
-
+updateFeeds(initState)
 const form = document.querySelector('#rssForm');
 const input = document.querySelector('#rssUrl');
 
