@@ -5,7 +5,7 @@ let input
 let form
 let textCheck
 
-const renderFeeds = (feeds) => {
+const renderFeeds = (feeds = []) => {
   const feedsContainer = document.querySelector('#feeds')
   feedsContainer.innerHTML = ''
   feeds.forEach((feed) => {
@@ -21,7 +21,7 @@ const renderFeeds = (feeds) => {
     feedsContainer.append(div)})
 }
 
-const renderPosts = (posts) => {
+const renderPosts = (posts = []) => {
   const container = document.querySelector('#posts')
 
   container.innerHTML = ''
