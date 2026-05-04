@@ -78,7 +78,7 @@ const render = (i18n) => {
 export default (i18n) => {
   const container = document.querySelector('.mainContainer')
 
-  container.innerHTML = `<div class="row">
+  container.innerHTML = `<div class="row w-50 mx-auto">
 
   <section class="col-6">
     <h4>${i18n.t('posts.title')}</h4>
