@@ -58,10 +58,10 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault()
   const url = input.value
   const error = await validate(url, initState.feeds)
-  initState.form.valid = !error
-  initState.form.error = error
 
   if (error) {
+    initState.form.valid = false
+    initState.form.error = error
     return
   }
 
@@ -79,6 +79,8 @@ form.addEventListener('submit', async (e) => {
 })
 initState.feeds.push(feed)
 initState.posts.push(...relatedPosts)
+initState.form.valid = true
+initState.form.error = null
 input.value = '';
 input.focus();
   }
