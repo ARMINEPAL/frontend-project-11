@@ -5,10 +5,8 @@ const parseRSS = (data) => {
     const channel = doc.querySelector('channel')
 
     if (!channel) {
-    const error = new Error('parse')
-    error.type = 'parse'
-    throw error
-  }
+        throw new Error('parse')
+      }
 
     const feed = {
         title: channel.querySelector('title').textContent,
