@@ -79,15 +79,15 @@ export default (i18n) => {
   const container = document.querySelector('.mainContainer')
 
   container.innerHTML = `
-  <section>
-    <h2>${i18n.t('feeds.title')}</h2>
-    <div id="feeds"></div>
-  </section>
-
-  <section>
+  <section class="col-md-4>
     <h2>${i18n.t('posts.title')}</h2>
     <div id="posts"></div>
     </section>
+
+    <section class="col-md-8">
+    <h2>${i18n.t('feeds.title')}</h2>
+    <div id="feeds"></div>
+  </section>
     `
   input = document.querySelector('#rssUrl')
   form = document.querySelector('#rssForm')
