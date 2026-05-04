@@ -64,27 +64,32 @@ form.addEventListener('submit', async (e) => {
   if (error) {
     return
   }
-
-  try {
-    const data = await load(url)
-    const {feed, posts} = parseRSS(data)
-    feed.id = uniqueId()
-    feed.url = url
-    const relatedPosts = posts.map(post => {
-      return {
-    ...post,
-    id: uniqueId(),
-    feedId: feed.id
+  if(!error) {
+    try {
+      const data = await load(url)
+      const {feed, posts} = parseRSS(data)
+      feed.id = uniqueId()
+      feed.url = url
+      const relatedPosts = posts.map(post => {
+        return {
+      ...post,
+      id: uniqueId(),
+      feedId: feed.id
+    }
+  })
+  initState.feeds.push(feed)
+  initState.posts.push(...relatedPosts)
+  input.value = '';
+  input.focus();
+  initState.form.valid = true
+  initState.form.error = null
+    }
+    catch (e) {
+      initState.form.valid = false
+      initState.form.error = 'errors.network'
+    }
+    return
   }
-})
-initState.feeds.push(feed)
-initState.posts.push(...relatedPosts)
-input.value = '';
-    input.focus();
-  }
-  catch (e) {
-    initState.form.valid = false
-    initState.form.error = 'errors.network'
-  }
+  
     
 })
