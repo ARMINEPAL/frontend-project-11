@@ -8,7 +8,8 @@ export default {
             required: 'Не должно быть пустым',
             url: 'Ссылка должна быть валидным URL',
             notOneOf: 'RSS уже существует',
-            network: 'Ошибка сети'
+            network: 'Ошибка сети',
+            parse: 'Ресурс не содержит валидный RSS'
         },
         feeds: {
             title: 'Фиды',

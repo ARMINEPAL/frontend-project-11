@@ -3,6 +3,10 @@ const parseRSS = (data) => {
     const doc = parser.parseFromString( data, "application/xml")
     
     const channel = doc.querySelector('channel')
+    
+    if (!channel) {
+        throw new Error('parse')
+      }
 
     const feed = {
         title: channel.querySelector('title').textContent,

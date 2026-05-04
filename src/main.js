@@ -57,21 +57,17 @@ const input = document.querySelector('#rssUrl');
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
   const url = input.value
-  console.log('START SUBMIT')
   const error = await validate(url, initState.feeds)
-  console.log('VALIDATE RESULT:', error)
+
   if (error) {
     initState.form.valid = false
     initState.form.error = error
-    console.log('VALIDATION FAILED')
     return
   }
-  console.log('VALIDATION PASSED')
+
   try {
     const data = await load(url)
-    console.log('LOADED DATA')
     const {feed, posts} = parseRSS(data)
-    console.log('PARSED')
     feed.id = uniqueId()
     feed.url = url
     const relatedPosts = posts.map(post => {
@@ -90,9 +86,12 @@ input.focus();
   }
   catch (e) {
     initState.form.valid = false
-    initState.form.error = 'errors.network'
-    console.log('CATCH ERROR:', e)
 
+    if (e.message === 'parse') {
+    initState.form.error = 'errors.parse'
+  } else {
+    initState.form.error = 'errors.network'
+  }
   }
     
 })
