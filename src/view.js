@@ -81,13 +81,13 @@ export default (i18n) => {
   container.innerHTML = `<div class="row">
 
   <section class="col-6">
-    <h2>${i18n.t('feeds.title')}</h2>
-    <div id="feeds"></div>
+    <h2>${i18n.t('posts.title')}</h2>
+    <div id="posts"></div>
   </section>
 
   <section class="col-6">
-    <h2>${i18n.t('posts.title')}</h2>
-    <div id="posts"></div>
+    <h2>${i18n.t('feeds.title')}</h2>
+    <div id="feeds"></div>
   </section>
 
 </div>
