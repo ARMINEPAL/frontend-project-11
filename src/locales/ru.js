@@ -10,5 +10,11 @@ export default {
             notOneOf: 'RSS уже существует',
             network: 'Ошибка сети'
         },
+        feeds: {
+            title: 'Фиды',
+        },
+        posts: {
+            title: 'Посты'
+        }
     }
 }

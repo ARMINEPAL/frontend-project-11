@@ -5,8 +5,51 @@ let input
 let form
 let textCheck
 
+const renderFeeds = (feeds) => {
+  const feedsContainer = document.querySelector('#feeds')
+  feedsContainer.innerHTML = ''
+  feeds.forEach((feed) => {
+    const div = document.createElement('div')
+
+    div.classList.add('mb-3')
+
+    div.innerHTML = `
+      <h3>${feed.title}</h3>
+      <p>${feed.description}</p>
+    `
+
+    feedsContainer.append(div)})
+}
+
+const renderPosts = (posts) => {
+  const container = document.querySelector('#posts')
+
+  container.innerHTML = ''
+
+  const ul = document.createElement('ul')
+  ul.classList.add('list-group')
+
+  posts.forEach((post) => {
+    const li = document.createElement('li')
+    li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center')
+
+    const a = document.createElement('a')
+    a.href = post.link
+    a.textContent = post.title
+    a.target = '_blank'
+
+    li.append(a)
+    ul.append(li)
+  })
+
+  container.append(ul)
+}
+
 const render = (i18n) => {
   const snap = snapshot(initState)
+  renderFeeds(snap.feeds)
+  renderPosts(snap.posts)
+
   if(snap.form.valid === false) {
     textCheck.textContent = i18n.t(snap.form.error)
     input.classList.add('is-invalid')
@@ -33,6 +76,19 @@ const render = (i18n) => {
 }
 
 export default (i18n) => {
+  const container = document.querySelector('.container')
+
+  container.innerHTML = `
+  <section>
+    <h2>${i18n.t('feeds.title')}</h2>
+    <div id="feeds"></div>
+  </section>
+
+  <section>
+    <h2>${i18n.t('posts.title')}</h2>
+    <div id="posts"></div>
+    </section>
+    `
   input = document.querySelector('#rssUrl')
   form = document.querySelector('#rssForm')
   textCheck = document.createElement('span')
