@@ -39,7 +39,7 @@ const renderPosts = (posts, seenPosts) => {
     a.textContent = post.title
     a.target = '_blank'
 
-    if (seenPostsPosts.includes(post.id)) {
+    if (seenPosts.includes(post.id)) {
       a.classList.add('fw-normal')
     } else {
       a.classList.add('fw-bold')
