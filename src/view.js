@@ -38,8 +38,12 @@ const renderPosts = (posts) => {
     a.href = post.link
     a.textContent = post.title
     a.target = '_blank'
+    const button = document.createElement('button')
+    button.textContent = 'Просмотр'
+    button.dataset.id = post.id
+    button.classList.add('btn', 'btn-outline-primary', 'btn-sm')
 
-    li.append(a)
+    li.append(a, button)
     ul.append(li)
   })
 
