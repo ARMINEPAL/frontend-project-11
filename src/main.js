@@ -56,12 +56,14 @@ const input = document.querySelector('#rssUrl');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
+  initState.form.isLoading = true
   const url = input.value
   const error = await validate(url, initState.feeds)
 
   if (error) {
     initState.form.valid = false
     initState.form.error = error
+    initState.form.isLoading = false
     return
   }
 
@@ -82,6 +84,9 @@ form.addEventListener('submit', async (e) => {
     } else {
       initState.form.error = 'errors.network'
     }
+  }
+  finally {
+    initState.form.isLoading = false
   }
     
 })

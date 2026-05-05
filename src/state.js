@@ -5,14 +5,11 @@ export const initState = proxy({
     valid: null,
     error: null,
   },
-  loadingProcess: {
-    status: 'idle',
-    error: null,
-  },
+  isLoading: false;
   feeds: [],
   posts: [],
   ui: {
     seenPosts: [],
     //new Set()
   }
-});
+})
