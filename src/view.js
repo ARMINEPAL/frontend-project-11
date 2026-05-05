@@ -21,7 +21,7 @@ const renderFeeds = (feeds = []) => {
     feedsContainer.append(div)})
 }
 
-const renderPosts = (posts) => {
+const renderPosts = (posts, seenPosts) => {
   if (!posts) return
   const container = document.querySelector('#posts')
 
@@ -38,6 +38,13 @@ const renderPosts = (posts) => {
     a.href = post.link
     a.textContent = post.title
     a.target = '_blank'
+
+    if (readPosts.includes(post.id)) {
+      a.classList.add('fw-normal')
+    } else {
+      a.classList.add('fw-bold')
+    }
+    
     const button = document.createElement('button')
     button.textContent = 'Просмотр'
     button.dataset.id = post.id
