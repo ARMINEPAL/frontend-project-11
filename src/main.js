@@ -7,6 +7,7 @@ import resources from './locales/index.js'
 import i18next from 'i18next'
 import loadFeed from './feedLoader.js'
 import updateFeeds from './updateFeeds.js'
+import * as bootstrap from 'bootstrap'
 
 const defaultLanguage = 'ru'
 
@@ -84,3 +85,26 @@ form.addEventListener('submit', async (e) => {
   }
     
 })
+
+document.addEventListener('click', (e) => {
+  const button = e.target.closest('button')
+  if (!button) return
+
+  const id = button.dataset.id
+
+  if (!initState.ui.seenPosts.includes(id)) {
+    initState.ui.seenPosts.push(id)
+  }
+  const post = initState.posts.find((p) => String(p.id) === id)
+
+  if (!post) return
+
+  document.querySelector('.modal-title').textContent = post.title
+  document.querySelector('.modal-body p').textContent = post.description || ''
+  document.querySelector('.modal-footer a').href = post.link
+
+  const modal = new bootstrap.Modal(document.getElementById('modal'))
+  modal.show()
+})
+
+//post - {title, link, id, feedId}

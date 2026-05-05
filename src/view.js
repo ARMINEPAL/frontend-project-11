@@ -64,7 +64,7 @@ const render = (i18n) => {
   }
   
   if (snap.posts.length > 0) {
-    renderPosts(snap.posts)
+    renderPosts(snap.posts, snap.ui.seenPosts)
   }
 
   if(snap.form.valid === false) {
