@@ -39,12 +39,12 @@ const renderPosts = (posts, seenPosts) => {
     a.textContent = post.title
     a.target = '_blank'
 
-    if (readPosts.includes(post.id)) {
+    if (seenPostsPosts.includes(post.id)) {
       a.classList.add('fw-normal')
     } else {
       a.classList.add('fw-bold')
     }
-    
+
     const button = document.createElement('button')
     button.textContent = 'Просмотр'
     button.dataset.id = post.id
