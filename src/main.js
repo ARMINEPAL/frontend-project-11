@@ -111,5 +111,3 @@ document.addEventListener('click', (e) => {
   const modal = new bootstrap.Modal(document.getElementById('modal'))
   modal.show()
 })
-
-//post - {title, link, id, feedId}
