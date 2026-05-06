@@ -53,7 +53,7 @@ const renderPosts = (posts = [], seenPosts = [], i18n) => {
       'list-group-item',
       'd-flex',
       'justify-content-between',
-      'align-items-start'
+      'align-items-start',
     )
 
     const link = document.createElement('a')
@@ -64,7 +64,8 @@ const renderPosts = (posts = [], seenPosts = [], i18n) => {
 
     if (seenPosts.includes(String(post.id))) {
       link.classList.add('link-secondary')
-    } else {
+    }
+    else {
       link.classList.add('fw-bold')
     }
 
@@ -92,13 +93,15 @@ const render = (i18n) => {
 
     textCheck.classList.add('text-danger')
     textCheck.classList.remove('text-success')
-  } else if (snap.form.valid === true) {
+  }
+  else if (snap.form.valid === true) {
     textCheck.textContent = i18n.t('success')
     input.classList.remove('is-invalid')
 
     textCheck.classList.remove('text-danger')
     textCheck.classList.add('text-success')
-  } else {
+  }
+  else {
     textCheck.textContent = ''
     input.classList.remove('is-invalid')
 
