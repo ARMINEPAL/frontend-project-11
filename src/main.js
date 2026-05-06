@@ -13,22 +13,22 @@ const defaultLanguage = 'ru'
 
 setLocale({
   mixed: {
-    required: () => ({ key: 'errors.required'}),
-    notOneOf: () => ({ key: 'errors.notOneOf'})
+    required: () => ({ key: 'errors.required' }),
+    notOneOf: () => ({ key: 'errors.notOneOf' }),
   },
   string: {
-    url: () => ({ key: 'errors.url'}),
+    url: () => ({ key: 'errors.url' }),
   },
 })
 const createSchema = (feeds) => {
-  const urls = feeds.map((feed) => feed.url)
+  const urls = feeds.map(feed => feed.url)
   return yup.object().shape({
     url: yup.string()
-    .required()
-    .url()
-    .notOneOf(urls)
+      .required()
+      .url()
+      .notOneOf(urls),
   })
-} 
+}
 
 const validate = async (url, feeds) => {
   const schema = createSchema(feeds)
@@ -45,14 +45,14 @@ const i18n = i18next.createInstance()
 
 await i18n.init({
   lng: defaultLanguage,
-  debug:false,
+  debug: false,
   resources,
 })
 
 initView(i18n)
 updateFeeds(initState)
-const form = document.querySelector('#rssForm');
-const input = document.querySelector('#rssUrl');
+const form = document.querySelector('#rssForm')
+const input = document.querySelector('#rssUrl')
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault()
@@ -73,22 +73,22 @@ form.addEventListener('submit', async (e) => {
     initState.posts.push(...posts)
     initState.form.valid = true
     initState.form.error = null
-    input.value = '';
-    input.focus();
+    input.value = ''
+    input.focus()
   }
   catch (e) {
     initState.form.valid = false
 
     if (e.message === 'parse') {
       initState.form.error = 'errors.parse'
-    } else {
+    }
+    else {
       initState.form.error = 'errors.network'
     }
   }
   finally {
     initState.form.isLoading = false
   }
-    
 })
 
 document.addEventListener('click', (e) => {
@@ -100,7 +100,7 @@ document.addEventListener('click', (e) => {
   if (!initState.ui.seenPosts.includes(id)) {
     initState.ui.seenPosts.push(id)
   }
-  const post = initState.posts.find((p) => String(p.id) === id)
+  const post = initState.posts.find(p => String(p.id) === id)
 
   if (!post) return
 

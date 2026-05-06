@@ -18,7 +18,8 @@ const renderFeeds = (feeds = []) => {
       <p>${feed.description}</p>
     `
 
-    feedsContainer.append(div)})
+    feedsContainer.append(div)
+  })
 }
 
 const renderPosts = (posts, seenPosts) => {
@@ -41,7 +42,8 @@ const renderPosts = (posts, seenPosts) => {
 
     if (seenPosts.includes(post.id)) {
       a.classList.add('fw-normal')
-    } else {
+    }
+    else {
       a.classList.add('fw-bold')
     }
 
@@ -62,17 +64,17 @@ const render = (i18n) => {
   if (snap.feeds.length > 0) {
     renderFeeds(snap.feeds)
   }
-  
+
   if (snap.posts.length > 0) {
     renderPosts(snap.posts, snap.ui.seenPosts)
   }
 
-  if(snap.form.valid === false) {
+  if (snap.form.valid === false) {
     textCheck.textContent = i18n.t(snap.form.error)
     input.classList.add('is-invalid')
     textCheck.classList.add('text-danger')
     textCheck.classList.remove('text-success')
-  } 
+  }
   else if (snap.form.valid === true) {
     textCheck.textContent = i18n.t('success')
 
@@ -82,13 +84,12 @@ const render = (i18n) => {
     textCheck.classList.add('text-success')
   }
   else {
-   
-    textCheck.textContent = '';
+    textCheck.textContent = ''
 
-    input.classList.remove('is-invalid');
+    input.classList.remove('is-invalid')
 
-    textCheck.classList.remove('text-danger');
-    textCheck.classList.remove('text-success');
+    textCheck.classList.remove('text-danger')
+    textCheck.classList.remove('text-success')
   }
 }
 
