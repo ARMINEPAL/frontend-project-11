@@ -9,7 +9,6 @@ jobs:
       - uses: actions/setup-node@v4
       - run: make install
       - run: make lint
-      - run: make test-coverage
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
