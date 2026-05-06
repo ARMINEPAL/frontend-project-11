@@ -2,90 +2,104 @@ import { subscribe, snapshot } from 'valtio/vanilla'
 import { initState } from './state.js'
 
 let input
-let form
 let textCheck
 
-const renderFeeds = (feeds = []) => {
-  const feedsContainer = document.querySelector('#feeds')
+const renderFeeds = (feeds = [], i18n) => {
+  const feedsContainer = document.querySelector('.feeds')
+
   feedsContainer.innerHTML = ''
+
+  if (feeds.length === 0) return
+
+  const title = document.createElement('h3')
+  title.textContent = i18n.t('feeds.title')
+
+  const ul = document.createElement('ul')
+  ul.classList.add('list-group', 'mb-5')
+
   feeds.forEach((feed) => {
-    const div = document.createElement('div')
+    const li = document.createElement('li')
+    li.classList.add('list-group-item')
 
-    div.classList.add('mb-3')
+    const feedTitle = document.createElement('h3')
+    feedTitle.textContent = feed.title
 
-    div.innerHTML = `
-      <h3>${feed.title}</h3>
-      <p>${feed.description}</p>
-    `
+    const feedDescription = document.createElement('p')
+    feedDescription.textContent = feed.description
 
-    feedsContainer.append(div)
+    li.append(feedTitle, feedDescription)
+    ul.append(li)
   })
+
+  feedsContainer.append(title, ul)
 }
 
-const renderPosts = (posts, seenPosts) => {
-  if (!posts) return
-  const container = document.querySelector('#posts')
+const renderPosts = (posts = [], seenPosts = [], i18n) => {
+  const postsContainer = document.querySelector('.posts')
 
-  container.innerHTML = ''
+  postsContainer.innerHTML = ''
+
+  if (posts.length === 0) return
+
+  const title = document.createElement('h3')
+  title.textContent = i18n.t('posts.title')
 
   const ul = document.createElement('ul')
   ul.classList.add('list-group')
 
   posts.forEach((post) => {
     const li = document.createElement('li')
-    li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center')
+    li.classList.add(
+      'list-group-item',
+      'd-flex',
+      'justify-content-between',
+      'align-items-start'
+    )
 
-    const a = document.createElement('a')
-    a.href = post.link
-    a.textContent = post.title
-    a.target = '_blank'
+    const link = document.createElement('a')
+    link.href = post.link
+    link.textContent = post.title
+    link.target = '_blank'
+    link.rel = 'noopener noreferrer'
 
-    if (seenPosts.includes(post.id)) {
-      a.classList.add('fw-normal')
-    }
-    else {
-      a.classList.add('fw-bold')
+    if (seenPosts.includes(String(post.id))) {
+      link.classList.add('link-secondary')
+    } else {
+      link.classList.add('fw-bold')
     }
 
     const button = document.createElement('button')
-    button.textContent = 'Просмотр'
+    button.textContent = i18n.t('buttons.preview')
     button.dataset.id = post.id
     button.classList.add('btn', 'btn-outline-primary', 'btn-sm')
 
-    li.append(a, button)
+    li.append(link, button)
     ul.append(li)
   })
 
-  container.append(ul)
+  postsContainer.append(title, ul)
 }
 
 const render = (i18n) => {
   const snap = snapshot(initState)
-  if (snap.feeds.length > 0) {
-    renderFeeds(snap.feeds)
-  }
 
-  if (snap.posts.length > 0) {
-    renderPosts(snap.posts, snap.ui.seenPosts)
-  }
+  renderFeeds(snap.feeds, i18n)
+  renderPosts(snap.posts, snap.ui.seenPosts, i18n)
 
   if (snap.form.valid === false) {
     textCheck.textContent = i18n.t(snap.form.error)
     input.classList.add('is-invalid')
+
     textCheck.classList.add('text-danger')
     textCheck.classList.remove('text-success')
-  }
-  else if (snap.form.valid === true) {
+  } else if (snap.form.valid === true) {
     textCheck.textContent = i18n.t('success')
-
     input.classList.remove('is-invalid')
 
     textCheck.classList.remove('text-danger')
     textCheck.classList.add('text-success')
-  }
-  else {
+  } else {
     textCheck.textContent = ''
-
     input.classList.remove('is-invalid')
 
     textCheck.classList.remove('text-danger')
@@ -94,26 +108,9 @@ const render = (i18n) => {
 }
 
 export default (i18n) => {
-  const container = document.querySelector('.mainContainer')
-
-  container.innerHTML = `<div class="row container">
-
-  <section class="col-6">
-    <h4>${i18n.t('posts.title')}</h4>
-    <div id="posts"></div>
-  </section>
-
-  <section class="col-6">
-    <h4>${i18n.t('feeds.title')}</h4>
-    <div id="feeds"></div>
-  </section>
-
-</div>
-`
   input = document.querySelector('#rssUrl')
-  form = document.querySelector('#rssForm')
-  textCheck = document.createElement('span')
-  form.append(textCheck)
+  textCheck = document.querySelector('.feedback')
+
   subscribe(initState, () => render(i18n))
   render(i18n)
 }

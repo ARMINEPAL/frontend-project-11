@@ -17,6 +17,9 @@ export default {
     posts: {
       title: 'Посты',
     },
+    buttons: {
+      preview: 'Просмотр',
+    },
     modal: {
       description: 'Цель: Научиться извлекать из дерева необходимые данные',
     },

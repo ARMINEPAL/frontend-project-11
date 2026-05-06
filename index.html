@@ -7,67 +7,109 @@
   </head>
 
   <body class="bg-light d-flex flex-column min-vh-100">
-    <header class="bg-dark text-white py-5 ">
-        <div class="container w-50 mx-auto">
-            <h1 class="display-5">RSS агрегатор</h1>
-        <p>Начните читать RSS сегодня! Это легко, это красиво.</p>
+
+
+    <header class="bg-dark text-white py-5">
+      <div class="container w-50 mx-auto">
+
+        <h1 class="display-5" data-i18n="app.title">RSS агрегатор</h1>
+
+        <p data-i18n="app.subtitle">
+          Начните читать RSS сегодня! Это легко, это красиво.
+        </p>
+
         <form id="rssForm" class="row g-2">
-            <div class="col-12 col-md-9 form-floating ">
-              <input
-                type="text"
-                id="rssUrl"
-                class="form-control form-control-lg"
-                placeholder="Ссылка RSS"
-                autocomplete="off"
-              />
-              <label for="rssUrl">Ссылка RSS</label>
-            </div>
-    
-            <div class="col-12 col-md-3 d-grid p-0">
-                <button class="btn btn-light btn-sm">
-                  Добавить
-                </button>
-              </div>
 
-              <div class="form-text text-light">
-                <span class="opacity-50">Пример: https://lorem-rss.hexlet.app/feed</span>
-              </div>
-            </form>
-        </div>
-    </header>
-    <main class="mainContainer my-5 flex-grow-1">
-      </main>
-      <footer class="border-top py-3 bg-white mt-auto">
-        <div class="container text-center text-muted">
-          created by <a href="#">Hexlet</a>
-        </div>
-      </footer>
-
-      <div class="modal fade" id="modal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-    
-            <div class="modal-header">
-              <h5 class="modal-title"></h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-    
-            <div class="modal-body">
-              <p></p>
-            </div>
-    
-            <div class="modal-footer">
-              <a class="btn btn-primary" target="_blank">
-                Читать полностью
-              </a>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                Закрыть
-              </button>
-            </div>
-    
+         
+          <div class="col-12 col-md-9 form-floating">
+            <input
+              type="text"
+              id="rssUrl"
+              class="form-control form-control-lg"
+              placeholder="RSS URL"
+              autocomplete="off"
+              aria-label="url"
+            />
+            <label for="rssUrl" data-i18n="form.label">Ссылка RSS</label>
           </div>
+
+       
+          <div class="col-12 col-md-3 d-grid">
+            <button type="submit" class="btn btn-light btn-lg">
+              <span data-i18n="form.button">Добавить</span>
+            </button>
+          </div>
+
+         
+          <div class="col-12">
+            <div class="form-text text-light">
+              <span class="opacity-50" data-i18n="form.help">
+                Пример: https://lorem-rss.hexlet.app/feed
+              </span>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <p class="feedback m-0"></p>
+          </div>
+
+        </form>
+
+      </div>
+    </header>
+
+
+    <main class="flex-grow-1 my-5">
+      <div class="container">
+    
+        <div class="row g-4">
+          <section class="posts col-12 col-lg-8"></section>
+
+          <section class="feeds col-12 col-lg-4"></section>
+    
+        </div>
+    
+      </div>
+    </main>
+
+
+    <footer class="border-top py-3 bg-white mt-auto">
+      <div class="container text-center text-muted">
+        <span data-i18n="footer.text">created by</span>
+        <a href="https://hexlet.io" target="_blank" rel="noopener noreferrer">
+          Hexlet
+        </a>
+      </div>
+    </footer>
+
+    <div class="modal fade" id="modal" tabindex="-1" aria-hidden="true">
+
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <p></p>
+          </div>
+
+          <div class="modal-footer">
+            <a class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              <span data-i18n="modal.read">Читать полностью</span>
+            </a>
+
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <span data-i18n="modal.close">Закрыть</span>
+            </button>
+          </div>
+
         </div>
       </div>
+
+    </div>
 
     <script type="module" src="/src/main.js"></script>
   </body>
