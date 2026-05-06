@@ -16,7 +16,6 @@ const parseRSS = (data) => {
   const posts = [...channel.querySelectorAll('item')].map((item) => {
     return {
       title: item.querySelector('title').textContent,
-      description: item.querySelector('description').textContent,
       link: item.querySelector('link').textContent,
     }
   })

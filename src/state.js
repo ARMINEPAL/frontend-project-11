@@ -1,4 +1,4 @@
-import { proxy } from 'valtio/vanilla'
+import { proxy } from 'valtio/vanilla';
 
 export const initState = proxy({
   form: {
@@ -10,5 +10,5 @@ export const initState = proxy({
   posts: [],
   ui: {
     seenPosts: [],
-  },
+  }
 })

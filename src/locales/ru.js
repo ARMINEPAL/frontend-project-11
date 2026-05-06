@@ -3,7 +3,7 @@ export default {
     languages: {
       ru: 'Русский',
     },
-    success: 'RSS загружен успешно',
+    success: 'RSS успешно загружен',
     errors: {
       required: 'Не должно быть пустым',
       url: 'Ссылка должна быть валидным URL',
@@ -17,5 +17,8 @@ export default {
     posts: {
       title: 'Посты',
     },
+    modal: {
+        description: 'Цель: Научиться извлекать из дерева необходимые данные',
+      },
   },
 }

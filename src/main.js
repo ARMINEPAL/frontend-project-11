@@ -105,7 +105,7 @@ document.addEventListener('click', (e) => {
   if (!post) return
 
   document.querySelector('.modal-title').textContent = post.title
-  document.querySelector('.modal-body p').textContent = post.description || ''
+  document.querySelector('.modal-body p').textContent = i18n.t('modal.description')
   document.querySelector('.modal-footer a').href = post.link
 
   const modal = new bootstrap.Modal(document.getElementById('modal'))
